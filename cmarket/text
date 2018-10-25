@@ -36,3 +36,27 @@ gcloud iam service-accounts keys create keyfilecloud.json --iam-account volume24
 export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"
 export GOOGLE_APPLICATION_CREDENTIALS="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
 export GOOGLE_APPLICATION_CREDENTIALS="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+
+
+while 1: #bitcoin
+	bitcoin = r.json()
+	key = client.key('Bitcoin')
+	# item = datastore.Entity(key)
+	task = client.get(key)
+  	task['market_cap_usd'] = bitcoin["market_cap_usd"]
+  	task['price_usd']= bitcoin["price_usd"]
+  	task['last_updated']= bitcoin["last_updated"]
+  	task['name']= bitcoin["name"]
+  	task['24h_volume_usd']= bitcoin["24h_volume_usd"]
+  	task['percent_change_7d']= bitcoin["percent_change_7d"]
+  	task['symbol']= bitcoin["symbol"]
+  	task['max_supply']= bitcoin["max_supply"]
+  	task['rank']= bitcoin["rank"]
+  	task['percent_change_1h']= bitcoin["percent_change_1h"]
+  	task['total_supply']= bitcoin["total_supply"]
+  	task['price_btc']= bitcoin["price_btc"]
+  	task['available_supply'] = bitcoin["available_supply"]
+  	task['percent_change_24h'] = bitcoin["percent_change_24h"]
+  	task['id'] = bitcoin["id"]
+	key = client.put(task)
+	time.sleep(5) #10mins

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "volumn24bot",
+  "private_key_id": "c631071b573c689a1bd291dd2d91449fc5620a0a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5Yo23Er75fV+q\nC7uz7phERhNe5nua6SwFIvDTKQq+7Y7aRlbmo5IHStYNyqMOii2HAB6sjIGB5lpw\n0A3VMVT6o7vz7Dii1IKBECRtI1bWY+0AKG0FxrNdm8oLs7Hdd+I/k2g7Ys6YihEP\nX63vW/b0xzzt6dd0rAmeODUlQPkwr/FsTKhDMflohLYvG1zF6bsL7aFyg6CdV51i\nLEBhKcNTCtxgv5UQubRiOZeB3aH44SbAn9fFSN7EA6f639KZpJ2v4BJWYSYquwnB\n17N8W7BVYlcwY8toyU25dZKyA067ht16CEYiYZ0D17TNulJ6ZNDqODeaSZfGl7ne\nBHNkJf3DAgMBAAECggEAB3QyzuKIb/UYjfiCcHxi5vGuAPthomF1Xr7GLwXnQON8\nAmYJQ7xpw/pjPmSJDSI/W3icIDf5sLkMA7TW87o8m5I3QKARmop1nlENHStexTQE\n0d5xKCBMnlVJzSkyIc8mMYQ2hTnZdobbAGKzM3zIaE7PmrfceJ8y8Z7vH78Rl2F+\nR8AFTHnPN0AHHflyTVamQ/2pdkNHmagOOdC/GX/Ip5X3Ysyu8ylUIo2mq+15mz/j\nH41dETEXOAaUPxKbAXeHEpfGLt8YuJ8krPoEvr7TugSnBqfTWUaQd5rr70I1EH6B\nQUrPN+UVFmst7KCyKHIIkI02gE+3E3AbKxtZCp3zMQKBgQD/doe61oGXrc3pKUD+\n8cZwDbp0cuz6pvjC1nrmQNJZMngqjAkDGaJaPQYI5PG/5mh4wx77Ajl8V2L4SXO+\nIw4U2+lvm3B6UdmbWA/z5LG+arfSdJAip85TyfEWt4rXx5Nw7cqHAcXL5YFjgoMH\nsdHk5Mr/xYew5Uq8QfxSLGJPTQKBgQC5xlAfGYJKsu1dGv6jeJUxDa4rFJJQ+s1e\nhhHQHRgFsx8UY/6OcpGZrOorRyZgpoZVMkC8Zq5n/GT97JDZH7OS/ZXMbKvtq/4d\nYM9xBU8E9t7FsoYLYw2i8W58FaQmo3tIQD7l60m+g5zQvQ0fibCxccwg/DJ2JPGg\nyuV6EdUZTwKBgEFpi1WnCWXaRihWvOLK68HTchPRPabszDOvkaaVoIbgam6Sjtgx\nXyX2DC6I2PIHQGbzp2Ikbq3M/nWO8UkVVsy2hq5iQcnAXZTuVp9fxrd4Qftsh1+o\nUieYRNhJRQ79dl5rNPme1ZPg/2GIkJ6OxKz0fJpDbPw5qgpMZxxvavjdAoGAJb/D\nZh5j2FP1YZbrqUIGZtpVytE6ThQ4iP2LPxO6XuYf6Z/MCRwEtApr5vFlPfx4jXVR\nrDbdN6oUx3g7krMbZUH8H3bxlLD/SO70GA4xGVwktl1pWYT+L18JyVMIcQWFNpA/\nd67Q5FKQGeZgdUkgS15JUWaNxm4JX1f7O0vGVocCgYEAvMvMVADUURht26CuZNvf\nBUunARYEowas3jNc+mgqh+DexFzXosUOy345jiekyO6PK246mA7SBlDI0/HD5plC\nGO4G1BbmrfRMPsWkVN5+LwSD7+uFOZmC/i2csTkGMCOx6IYSGZeW/J2tb0qHaRtP\nCHcwmxewvr9RXLeK7ke3PLg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "volume24bot@volumn24bot.iam.gserviceaccount.com",
+  "client_id": "115570506008020133324",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/volume24bot%40volumn24bot.iam.gserviceaccount.com"
+}

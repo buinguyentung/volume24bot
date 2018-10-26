@@ -15,8 +15,8 @@ for (x,y) in struct:
 	print x, y
 
 import os 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
-
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/keyfile.json"
+#/home/tanho/keyfile.json
 from google.cloud import datastore
 import time
 
@@ -28,5 +28,5 @@ while 1:
 	for (k,v) in struct:	
 		item.update({k:v})
 	key = client.put(item)
-	sleep(300) #delay per 5 mins for update
+	time.sleep(10) #delay per 5 mins for update
 

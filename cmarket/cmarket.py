@@ -19,8 +19,8 @@ for x in carray:
     print(x.symbol)
     print(x.rank)
 import os 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
-
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/keyfile.json"
+#"/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
 import google.auth
 from google.cloud import datastore
 

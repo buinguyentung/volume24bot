@@ -1,66 +1,43 @@
 import json
 import requests
-
-r = requests.get('https://api.coinmarketcap.com/v1/ticker/')
-class cstruct:
-    def __init__(self, id, symbol, rank):
-        self.id = id
-        self.symbol = symbol
-        self.rank = rank
-carray = []
-for y in r.json():
-	print(y)
-for coin in r.json():
-    p = cstruct(coin["id"], coin["symbol"], coin["rank"]);
-    carray.append(p)
-
-for x in carray:
-    print(x.id)
-    print(x.symbol)
-    print(x.rank)
 import os 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/keyfile.json"
-#"/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
-import google.auth
+import time
 from google.cloud import datastore
 
-credentials, projectId = google.auth.default()
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+#/home/tanho/keyfile.json
+# "/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
 client = datastore.Client()
 
-key = client.key('TenX')
-item = datastore.Entity(key)
-item.update({
-  		'market_cap_usd': 63720958.0,
-  		'price_usd': 0.5827362112,
-  		'last_updated': 1540476750,
-  		'name': "TenX",
-  		'24h_volume_usd': 788879.398331,
-  		'percent_change_7d': 2.24,
-  		'symbol': "PAY",
-  		'max_supply': "None",
-  		'rank': 100,
-  		'percent_change_1h': -0.1,
-  		'total_supply': 205218256.0,
-  		'price_btc': 0.00009027,
-  		'available_supply': 109347861.0,
-  		'percent_change_24h': 1.48,
-  		'id': 'tenx'
-})
-key = client.put(item)
-# {
-#   "market_cap_sd": "63812222.0",
-#   "price_sd": "0.583570828",
-#   "last_pdated": "1540474772",
-#   "name": "TenX",
-#   "24h_volme_sd": "780045.695122",
-#   "percent_change_7d": "2.3",
-#   "symbol": "PAY",
-#   "max_spply": "",
-#   "rank": "100",
-#   "percent_change_1h": "-0.12",
-#   "total_spply": "205218256.0",
-#   "price_btc": "0.00009015",
-#   "available_spply": "109347861.0",
-#   "percent_change_24h": "1.6",
-#   "id": "tenx"
-# }
+lt = {'bitcoin','ethereum','ripple'}
+  
+def urlCoin(name):
+  return requests.get('https://api.coinmarketcap.com/v1/ticker/'+name)
+
+def toStruct(req):
+  coins = req.json()
+  coin = coins[0]
+  struct = [] 
+  for c in coin:
+    struct.append((c, coin[c]))
+  return struct
+
+def toDatastore(name,struct):  
+  key = client.key(name)
+  item = datastore.Entity(key)
+  for (k,v) in struct:  
+    item.update({k:v})
+  key = client.put(item)
+  
+def main():
+  while 1:
+    for name in lt:
+      req = urlCoin(name)
+      struct = toStruct(req)
+      run = toDatastore(name,struct)
+    time.sleep(300) #delay per 5 mins for update
+
+  return "done"
+if __name__ == "__main__":
+  main()
+

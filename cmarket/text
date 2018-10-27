@@ -15,9 +15,15 @@
   'percent_change_24h': '1.48',
   'id': 'tenx'
 }
-gcloud projects add-iam-policy-binding volumn24bot --member "serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com" --role "roles/owner"
+gloud init 
+
+
+
+gcloud iam service-accounts create volume24bot
 
 gcloud projects add-iam-policy-binding volumn24bot --member "serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com" --role "roles/owner"
+
+gcloud projects add-iam-policy-binding serious-citron-218121 --member "serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com" --role "roles/owner"
 bindings:
 - members:
   - serviceAccount:volumn24bot@appspot.gserviceaccount.com

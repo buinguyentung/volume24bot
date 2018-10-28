@@ -1,0 +1,24 @@
+//=== Participants:
+Tung-san, Tan-san
+
+//=== Contents
+Tung-san
+1. Introduce the idea of volume24bot project
+2. Talk about the basic financial & investment terminology:
+market source api, chart, volume, MACD, RSI, etc.
+3. Suggest the 1st simple strategy of bot
+4. Review the working environment:
+git, project board, python, database, android, etc.
+5. Remind about the risky:
+market fake, api expiration, etc.
+
+
+Tan-san
+1. Introduce the current status of code
+cmarket, google cloud, compute engine, etc.
+2. Review about the dependency:
+database expandable; online compute engine trial;
+
+//=== Next Action
+1. 
+2. 

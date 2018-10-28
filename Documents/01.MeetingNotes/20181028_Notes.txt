@@ -20,5 +20,13 @@ cmarket, google cloud, compute engine, etc.
 database expandable; online compute engine trial;
 
 //=== Next Action
-1. 
-2. 
+Tan-san
+1. Google cloud DB limitation (storage, kind, column, etc.)?
+2. Python: query DB and update average kind?
+
+Tung-san
+1. Android: Query DB
+2. Review the algorithm.
+3. Commit:
++ Code:Task10:Intro
++ Doc:Task11:Intro

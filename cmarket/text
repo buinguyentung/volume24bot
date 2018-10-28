@@ -1,68 +1,25 @@
-{
-  'market_cap_usd': '63720958.0',
-  'price_usd': '0.5827362112',
-  'last_updated': '1540476750',
-  'name': 'TenX',
-  '24h_volume_usd': '788879.398331',
-  'percent_change_7d': '2.24',
-  'symbol': 'PAY',
-  'max_supply': 'None',
-  'rank': '100',
-  'percent_change_1h': '-0.1',
-  'total_supply': '205218256.0',
-  'price_btc': '0.00009027',
-  'available_supply': '109347861.0',
-  'percent_change_24h': '1.48',
-  'id': 'tenx'
-}
+===================================================
++ Create keyfile.json for connect datastore via api
+
 gloud init 
 
-
-
+***create service-accounts
 gcloud iam service-accounts create volume24bot
 
+***add to IAM policy 
 gcloud projects add-iam-policy-binding volumn24bot --member "serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com" --role "roles/owner"
 
 gcloud projects add-iam-policy-binding serious-citron-218121 --member "serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com" --role "roles/owner"
-bindings:
-- members:
-  - serviceAccount:volumn24bot@appspot.gserviceaccount.com
-  role: roles/editor
-- members:
-  - serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com
-  - user:hodinhtan@gmail.com
-  role: roles/owner
-etag: BwV5DxCg0zc=
-version: 1
 
+***create json file (publickey)
 gcloud iam service-accounts keys create [FILE_NAME].json --iam-account [NAME]@[PROJECT_ID].iam.gserviceaccount.com
 gcloud iam service-accounts keys create keyfilecloud.json --iam-account volume24bot@volumn24bot.iam.gserviceaccount.com
 
-
+***add to macrco of google 
 export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"
 export GOOGLE_APPLICATION_CREDENTIALS="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
 export GOOGLE_APPLICATION_CREDENTIALS="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+===================================================
 
-
-while 1: #bitcoin
-	bitcoin = r.json()
-	key = client.key('Bitcoin')
-	# item = datastore.Entity(key)
-	task = client.get(key)
-  	task['market_cap_usd'] = bitcoin["market_cap_usd"]
-  	task['price_usd']= bitcoin["price_usd"]
-  	task['last_updated']= bitcoin["last_updated"]
-  	task['name']= bitcoin["name"]
-  	task['24h_volume_usd']= bitcoin["24h_volume_usd"]
-  	task['percent_change_7d']= bitcoin["percent_change_7d"]
-  	task['symbol']= bitcoin["symbol"]
-  	task['max_supply']= bitcoin["max_supply"]
-  	task['rank']= bitcoin["rank"]
-  	task['percent_change_1h']= bitcoin["percent_change_1h"]
-  	task['total_supply']= bitcoin["total_supply"]
-  	task['price_btc']= bitcoin["price_btc"]
-  	task['available_supply'] = bitcoin["available_supply"]
-  	task['percent_change_24h'] = bitcoin["percent_change_24h"]
-  	task['id'] = bitcoin["id"]
-	key = client.put(task)
-	time.sleep(5) #10mins
++ ssh to compute engine:
+  gcloud compute --project "serious-citron-218121" ssh --zone "us-east1-b" "volume24bot"

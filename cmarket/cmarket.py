@@ -4,9 +4,10 @@ import os
 import time
 from google.cloud import datastore
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/github/py/volume24bot/cmarket/keyfilecloud.json"
 #/home/tanho/keyfile.json
-# "/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+# "/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json
+#/home/tanho/github/py/volume24bot/cmarket
 client = datastore.Client()
 
 lt = {'bitcoin','ethereum','ripple'}
@@ -30,13 +31,15 @@ def toDatastore(name,struct):
   key = client.put(item)
   
 def main():
-  while 1:
+  while 0:
     for name in lt:
       req = urlCoin(name)
       struct = toStruct(req)
       run = toDatastore(name,struct)
     time.sleep(300) #delay per 5 mins for update
-
+  if 1: 
+    req = urlCoin('')
+    print(req.json())
   return "done"
 if __name__ == "__main__":
   main()

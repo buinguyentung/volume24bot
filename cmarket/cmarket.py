@@ -4,7 +4,7 @@ import os
 import time
 from google.cloud import datastore
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/github/py/volume24bot/cmarket/keyfilecloud.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="home/volume24bot/cmarket/keyfilecloud.json"
 #/home/tanho/keyfile.json
 # "/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json
 #/home/tanho/github/py/volume24bot/cmarket

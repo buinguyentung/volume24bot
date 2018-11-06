@@ -1,0 +1,135 @@
+PURPOSE:
+1. Firebase definition
+2. Firebase in Android
+3. ...
+
+Docs:
+https://firebase.google.com/docs/database/android/start/
+
+
+// ==========================================================================
+WHAT IS FIREBASE?
+
+https://viblo.asia/p/tim-hieu-vegoogle-firebase-ymwGXVZ4R4p1
+https://techmaster.vn/posts/33822/firebase-la-gi
+http://eitguide.net/firebase-bai-mo-dau-gioi-thieu-ve-firebase/
+GG firebase: dich vu CSDL thoi gian thuc hoat dong tren nen tang dam may
+Firebase is a mobile and web application platform with tools and infrastructure designed to help developers build high-quality apps
++ Firebase Realtime Database: JSON. Realtime update. SSL 2048 bit certificate
++ Xac thuc nguoi dung: custom auth tokens.
++ Firebase hosting
+
+WHY FIREBASE?
+Trien khai hoat dong nhanh: Firebase cung cap kha nhieu API, ho tro da nen tang giup tiet kiem thoi gian quan ly cung nhu dong bo du lieu, hosting, xac thuc nguoi dung.
+Bao mat: Su dung cac ket noi thong qua giao thuc bao mat SSL hoat dong tren nen tang cloud dong thoi cho phep phan quyen nguoi dung database bang cu phap javascipt.
+Su on dinh: Firebase hoat dong dua tren nen tang cloud cung cap boi Google. Khong lo bi DDOS hoac Lag, viec bao tri cung khong can phai dung server.
+
+DISADVANTAGE:
+CSDL duoc to chuc theo kieu json trees, parent-children, khong phai kieu TABLE nhu MYSQL
+=> Can chuyen doi tu SQLDatabase sang Firebase Database.
+
+
+
+// ==========================================================================
+****** TROUBLESHOOTING 1
+The library com.google.android.gms:play-services-measurement-base is being requested by various other libraries at [[15.0.4,15.0.4]], but resolves to 15.0.2. 
+Disable the plugin and check your dependencies tree using ./gradlew :app:dependencies.
+=== Answer:
+https://stackoverflow.com/questions/50577437/com-google-android-gmsplay-services-measurement-base-is-being-requested-by-vari
+Make Sure to keep Your Google play services dependencies and Firebase dependencies to latest version.
+Check here for Google play services update version
+https://developers.google.com/android/guides/setup
+Check here for Firebase updated version 
+https://firebase.google.com/support/releases
+Check here for Firebase updated version for Android 
+https://firebase.google.com/support/release-notes/android
+
+
+
+// ==========================================================================
+Khoa Pham - Firebase in Android
+
+https://www.youtube.com/watch?v=dqs8uyc3iQY&list=PLzrVYRai0riTLPLclyGuByHvZ8_tDZZIr&index=2
+Lesson 1: Introduction
+Lesson 2: Integrate Firebase into Android
+Lesson 3: Data structure of firebase database
+https://firebase.google.com/docs/database/android/structure-data
+Lesson 4: setValue
+	DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("");
+	myRef.child("CongTy").child("Pana").setValue("2018-");
+
+Lesson 5: setValue with Object
+	CEntity ce = new CEntity("20181106", "0.0080", 51);
+	myRef.child("Ripple").setValue(ce);
+
+Lesson 6: setValue with Map
+	Map<String, Integer> myMap = new HashMap<String, Integer>();
+	myMap.put("XeMay", 2);
+	myMap.put("Oto", 4);
+	myRef.child("Vehicle").setValue(myMap);
+
+Lesson 7: setValue with Push
+Give object a random Key
+mRef.child("Ripple").push().setValue(ce);
+Lesson 8: CompletionListener
+myRef.child("Vehicle").setValue(myMap, new DatabaseReference.CompletionListener() {
+    @Override
+    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+        if (databaseError == null) {
+            Toast.makeText(MainActivity.this, "Save successfully", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Save failed", Toast.LENGTH_SHORT).show();
+        }
+    }
+});
+Lesson 9: addValue - receive data Realtime database
+myRef.child("Ripple").addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        textView1.setText(dataSnapshot.getValue().toString());
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+});
+Lesson 10: addChild - receive data with Push String
+
+Lesson 11: addChild - receive data with Push Object
+    ListView listView1;
+    ArrayList<String> arrayCEntity;
+    ArrayAdapter adapter;
+
+    listView1 = (ListView) findViewById(R.id.listView1);
+    arrayCEntity = new ArrayList<String>();
+    adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayCEntity);
+    listView1.setAdapter(adapter);
+
+    // Lesson 11: Receive data using Push Object
+    myRef.child("Ripple").addChildEventListener(new ChildEventListener() {
+        @Override
+        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            CEntity ce = dataSnapshot.getValue(CEntity.class);
+            arrayCEntity.add(ce.Timestamp + " - " + ce.bValue + " - " + ce.uValue);
+            adapter.notifyDataSetChanged();
+        }
+		@Override
+        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+        }
+	});
+
+Lesson 12: 
+
+
+
+// ==========================================================================
+
+https://www.techotopia.com/index.php/A_Firebase_Realtime_Database_List_Data_Tutorial
+Add, Remove child
+
+
+
+
+

@@ -1,32 +1,40 @@
-## Welcome to GitHub Pages
+## Welcome to Volume24Bot
 
-### Markdown
+### Intro
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Volume24Bot is a small bot tracking the trade volume of cryptocurrencies based on coinmarketcap.
+
 
 ```markdown
-Syntax highlighted code block
+Highlighted information
 
-# Header 1
-## Header 2
-### Header 3
+# It includes 
+- 24h trade volume
+- Price in BTC
+- Price in USDT
+- etc.
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+# Project member
+1. Tung Bui (buinguyentung2308@gmail.com)
+2. Tan Ho (hodinhtan@gmail.com)
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-Symbols in project board
-:sparkles: **Welcome to GitHub Projects** :sparkles:
+:sparkles: **Project board** :sparkles:
 We're so excited.
-- [x] Create a new project
-- [x] Give your project a name
-- [ ] Press the <kbd>?</kbd> key to see available keyboard shortcuts
+- [x] Python API querry data and store to DB
+- [x] Google cloud platform: datastore; app engine; compute engine
+- [x] `Firebase` in Android
+- [ ] Connect Firebase database to GG cloud datastore<kbd>?</kbd>
+If cannot:
+- [ ] GG cloud datastore in Android
+- [ ] Android UI: listview; chart; notification
+
+
+
+**Stay foolish stay hungry**
+_The best way to learn a new programming language is by writing programs in it_
+
+For more details of Markdown see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).

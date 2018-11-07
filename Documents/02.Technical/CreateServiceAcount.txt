@@ -1,0 +1,25 @@
+===================================================
++ Create keyfile.json for connect datastore via api
+
+gloud init 
+
+***create service-accounts
+gcloud iam service-accounts create app-volume-firebase-221712
+
+***add to IAM policy 
+gcloud projects add-iam-policy-binding app-volume-firebase-221712 --member "serviceAccount:app-volume-firebase-221712@app-volume-firebase-221712.iam.gserviceaccount.com" --role "roles/owner"
+
+gcloud projects add-iam-policy-binding serious-citron-218121 --member "serviceAccount:volume24bot@volumn24bot.iam.gserviceaccount.com" --role "roles/owner"
+
+***create json file (publickey)
+gcloud iam service-accounts keys create [FILE_NAME].json --iam-account [NAME]@[PROJECT_ID].iam.gserviceaccount.com
+gcloud iam service-accounts keys create keyfilecloud.json --iam-account app-volume-firebase-221712@app-volume-firebase-221712.iam.gserviceaccount.com
+
+***add to macrco of google 
+export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"
+export GOOGLE_APPLICATION_CREDENTIALS="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+export GOOGLE_APPLICATION_CREDENTIALS="/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json"
+===================================================
+
++ ssh to compute engine:
+  gcloud compute --project "serious-citron-218121" ssh --zone "us-east1-b" "volume24bot"

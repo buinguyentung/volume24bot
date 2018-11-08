@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">FirestoreGettingStarted</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+
+
+    <!-- Dialog/Fragment names -->
+    <string name="dialog_new_note">New Note Dialog</string>
+    <string name="dialog_view_note">View Note Dialog</string>
+
+    <!-- Strings -->
+    <string name="note_title">Title</string>
+    <string name="note_content">Content</string>
+
+    <string name="tvSelectCoin">Choose coin:</string>
+    <string-array name="saSelectCoin">
+        <item>bitcoin</item>
+        <item>dogecoin</item>
+        <item>ethereum</item>
+        <item>litecoin</item>
+        <item>ripple</item>
+    </string-array>
+    <string name="tvSelectDate">Select Date:</string>
+
+
+</resources>

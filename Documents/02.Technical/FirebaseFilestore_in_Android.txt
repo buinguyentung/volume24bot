@@ -1,0 +1,164 @@
+PURPOSE:
+1. Firebase filestore definition
+2. Firebase filestore in Android
+3. ...
+
+Docs:
+https://firebase.google.com/docs/firestore/
+
+
+// ==========================================================================
+FIREBASE CLOUD FILESTORE
+
+A flexible, scalable NoSQL cloud database to store and sync data for client- and server-side development.
+Cloud Firestore is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud Platform. 
++ Like Firebase Realtime Database, it keeps your data in sync across client apps through realtime listeners
++ and offers offline support for mobile and web so you can build responsive apps that work regardless of network latency or Internet connectivity. 
+Cloud Firestore also offers seamless integration with other Firebase and Google Cloud Platform products, including Cloud Functions.
+
+Key capabilities
++ Flexibility
++ Expressive querying
++ Realtime updates
++ Offline support
++ Designed to scale
+
+
+// ==========================================================================
+FILESTORE IN ANDROID
+
+Getting started
+https://www.youtube.com/watch?v=kDZYIhNkQoM
+
+*** Permission
+[Firestore]: Write failed at xrp_ex/Nk2rjSs4p5OP4WfIR3CD: Status{code=PERMISSION_DENIED, description=Missing or insufficient permissions., cause=null}
+https://www.youtube.com/watch?v=kDZYIhNkQoM
+Database/Rules:
+match /xrp_ex/{anything=**} {
+	allow read, write: if true;
+}
+
+*** Insert new data
+	// Access a Cloud Firestore instance from your Activity
+	FirebaseFirestore myRef;
+	CollectionReference myColRef;
+	// Initialize references
+	myRef = FirebaseFirestore.getInstance();
+	myColRef = myRef.collection("xrp_ex");
+	// Create object
+	CEntity ce = new CEntity("20181106", "0.0080", "51");
+	myColRef.document().set(ce);
+
+*** Listening Data change
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Listen to multiple documents in a collection
+        myColRef.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.d(TAG, "Listen failed.", e);
+                    return;
+                }
+                //Log.d(TAG, "Listening Data.");
+                adapter.clear();
+                listCEntity.clear();
+                listKey.clear();
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    CEntity ce = document.toObject(CEntity.class);
+                    listCEntity.add(ce.Timestamp + " - " + ce.bValue + " - " + ce.uValue);
+                    listKey.add(document.getId());
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+*** Get Data
+Collection Reference: Get Objects in all Documents
+myColRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+    @Override
+    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+        if (task.isSuccessful()) {
+            for (QueryDocumentSnapshot document : task.getResult()) {
+                CEntity ce = document.toObject(CEntity.class);
+                listCEntity.add(ce.Timestamp + " - " + ce.bValue + " - " + ce.uValue);
+                listKey.add(document.getId());
+                adapter.notifyDataSetChanged();
+            }
+        } else {
+            Log.d(TAG, "Error getting documents: ", task.getException());
+        }
+    }
+});
+
+Document Reference: Get Objects
+myDocRefget().addOnCompleteListener(new OnSuccessListener<DocumentSnapshot>() {
+    @Override
+    public void onSuccess(DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists()) {
+            CEntity ce = documentSnapshot.toObject(CEntity.class);
+            listCEntity.add(ce.Timestamp + " - " + ce.bValue + " - " + ce.uValue);
+            listKey.add(documentSnapshot.getId());
+            adapter.notifyDataSetChanged();
+        }
+    }
+});
+
+*** Delete data with document ID
+lvItem.setItemChecked(selectedPosition, false);
+myColRef.document(listKey.get(selectedPosition))
+        .delete()
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "Delete document error");
+            }
+        });
+
+*** Find/Query data
+https://www.programcreek.com/java-api-examples/index.php?api=com.google.firebase.firestore.EventListener
+	query = myColRef.whereEqualTo("Timestamp", findStr);
+    btnFind.setText("Clear");
+    searchMode = true;
+    query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+        @Override
+        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+            if (e != null) {
+                Log.d(TAG, "Listen failed.", e);
+                return;
+            }
+            Log.d(TAG, "Fetching find data.");
+            adapter.clear();
+            listCEntity.clear();
+            listKey.clear();
+            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                CEntity ce = document.toObject(CEntity.class);
+                listCEntity.add(ce.Timestamp + " - " + ce.bValue + " - " + ce.uValue);
+                listKey.add(document.getId());
+            }
+            adapter.notifyDataSetChanged();
+        }
+    });
+
+// ==========================================================================
+CodingWithMitch
+https://www.youtube.com/channel/UCoNZZLhPuuRteu02rh7bzsw/playlists
+https://www.youtube.com/watch?v=Tk5jTJeWVTk&list=PLgCYzUzKIBE8Jl8nTU2epOY1soaCWEt7f
+https://github.com/mitchtabian/FirestoreGettingStarted
+Insert new data
+Query data
+Update data
+Delete data
+Security rules
+Custom indexes
+
+
+
+
+
+
+
+

@@ -14,15 +14,25 @@ lt = {'bitcoin','ethereum','ripple','litecoin','dogecoin'}
   
 def urlCoin(name):
   return requests.get('https://api.coinmarketcap.com/v1/ticker/'+name)
-import datetime
+
+import datetime, schedule
+
+def sampling_data() :
+	for name in lt:
+        req = urlCoin(name)
+        data = req.json()
+        date_time = unicode(datetime.datetime.now().date())
+        updatedtime = unicode(datetime.datetime.now())
+        data[0].append({"datetime":date_time, "updatedtime": updatedtime})
+        add_db = client.collection(name).document(date_time).set(data[0])
+
+# schedule.every().day.at("10:00").do(sampling_data,'It is 10:00')
 def main():
-    while 1:
-        for name in lt:
-            req = urlCoin(name)
-            data = req.json()
-            print(data[0])
-            add_db = client.collection(name).document(unicode(datetime.datetime.now())).set(data[0])
-        sleep(43200) #need to implement usd time 10AM 
+	while True:
+		# schedule.run_pending()
+		sampling_data()
+		sleep(10000)
+
 if __name__ == "__main__":
   main()
 

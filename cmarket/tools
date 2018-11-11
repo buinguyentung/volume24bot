@@ -1,7 +1,0 @@
-pip install --upgrade google-api-python-client
-
-easy_install --upgrade google-api-python-client
-
-pip install google-cloud-datastore
-24h_volume_usd
-24h_volume_usd

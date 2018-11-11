@@ -1,0 +1,35 @@
+//=== Participants:
+Tung-san, Tan-san
+
+//=== Contents
+Tung-san
+1. Demo the simple Firebase in Android app
+2. Give an example of Volume24 UI design
+https://www.baruckis.com/android/my-crypto-coins-app-series-part-2/
+3. Demonstrate data structure: 
++ Firebase realtime db: json tree
++ Firebase filestore: collection (***) <=> GG Filestore
++ GG datastore: drop
+4. Discuss on json format: 
++ 24h_volume_usd 			=> volume_usd
++ date 						=> 20181101 or 2018-11-01
++ document name: simplify 	=> 2018-11-01
++ key: 						=> "latest_update"
+Only one document/day
+
+Tan-san
+1. Explain Google cloud DB limitation (storage, backup, VM, etc.)
+2. Present how to put python code into vm => NEED: auto start on booting
+
+
+//=== Next Action
+Tan-san
+1. [Python] Update json format
+2. [Doc] GG limitation
+3. [VM] Python auto start on booting
+
+Tung-san
+1. [Android] design simple UI
+2. [Android] Date and time query new format
+
+

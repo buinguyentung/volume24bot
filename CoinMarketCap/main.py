@@ -10,16 +10,17 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/hodinhtan/volume24bot/CoinMa
 #/home/tanho/github/py/volume24bot/cmarket
 client = firestore.Client()
 
-lt = {'bitcoin','ethereum','ripple','litecoin','dogecoin',
+lt_coin = {'bitcoin','ethereum','ripple','litecoin','dogecoin',
         "bitcoin-cash","eos","stellar","cardano","monero","tether"}
-  
+lt_time = {'06:00','14:00','23:30'}
+
 def urlCoin(name):
   return requests.get('https://api.coinmarketcap.com/v1/ticker/'+name)
 
 import datetime, schedule
 
 def sampling_data():
-    for name in lt:
+    for name in lt_coin:
         req = urlCoin(name)
         data = req.json()
         updated_date = unicode(datetime.datetime.now().date())
@@ -27,18 +28,32 @@ def sampling_data():
         data[0]["updated_date"] = updated_date
         data[0]["updated_time"] = updated_time
         data[0]["volume_usd"] = data[0]["24h_volume_usd"]
-        add_db = client.collection(name).document(updated_date).set(data[0])
+        client.collection(name).document(updated_date).set(data[0])
 
-schedule.every().day.at("06:00").do(sampling_data)
-schedule.every().day.at("14:00").do(sampling_data)
-schedule.every().day.at("23:30").do(sampling_data)
-#test
-#schedule.every().day.at("16:20").do(sampling_data)
+import timedelta #timedelta(days=1)
+def sumary_data():
+    limit_date = datetime.datetiem.now().date() - timedelta(days=1)
+    for name in lt_coin:
+        docs = client.collection(name)
+        for i in docs:
+            if (docs["updated_date"] > limit_date)
+                client.collection(name).document(docs["updated_date"]).
+                set({"volume_usd":docs["volume_usd"]})
+
+def run():
+    sampling_data()
+    sumary_data()
+
+def sampling_time():
+    for t in lt_time:
+        schedule.every().day.at(t).do(run)
+
 def main():
-    while True:
-        schedule.run_pending()
-	#sampling_data()
-	time.sleep(1)
+    sampling_time()
+    run()
+#    while True:
+#        schedule.run_pending()
+#	time.sleep(1)
 
 if __name__ == "__main__":
   main()

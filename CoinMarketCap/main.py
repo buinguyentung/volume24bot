@@ -29,7 +29,7 @@ def sampling_data():
         data[0]["volume_usd"] = data[0]["24h_volume_usd"]
         add_db = client.collection(name).document(updated_date).set(data[0])
 
-schedule.every().day.at("06:00").do(sampling_data)
+schedule.every().day.at("6:00").do(sampling_data)
 schedule.every().day.at("14:00").do(sampling_data)
 schedule.every().day.at("23:30").do(sampling_data)
 #test

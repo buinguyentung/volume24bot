@@ -18,6 +18,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:text="@string/tvSelectCoin"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Small" />
 
@@ -49,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="20181106"
+            android:hint="2018-11-06"
             android:inputType="textPersonName" />
     </LinearLayout>
 

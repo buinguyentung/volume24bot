@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 listKey.clear();
                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                     CEntity ce = document.toObject(CEntity.class);
-                    listCEntity.add(ce.date + " - vol_24h: " + ce.volume_usd + " - price_btc: " + ce.price_btc + " - price_usd: " + ce.price_usd);
+                    listCEntity.add(ce.updated_date + " - vol_24h: " + ce.volume_usd + " - price_btc: " + ce.price_btc + " - price_usd: " + ce.price_usd);
                     listKey.add(document.getId());
                 }
                 adapter.notifyDataSetChanged();
@@ -194,10 +194,10 @@ public class MainActivity extends AppCompatActivity {
             //String findStr = edtTimestamp.getText().toString();
             String findStr = edtSelectDate.getText().toString();
             if (findStr.equals("")) {
-                findStr = "20181106";
+                findStr = "2018-11-06";
             }
             //Log.d(TAG, "find string = " + findStr);
-            query = myColRef.whereEqualTo("date", findStr);
+            query = myColRef.whereEqualTo("updated_date", findStr);
             btnFind.setText("Clear");
             searchMode = true;
             query.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                     listKey.clear();
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         CEntity ce = document.toObject(CEntity.class);
-                        listCEntity.add(ce.date + " - vol_24h: " + ce.volume_usd + " - price_btc: " + ce.price_btc + " - price_usd: " + ce.price_usd);
+                        listCEntity.add(ce.updated_date + " - vol_24h: " + ce.volume_usd + " - price_btc: " + ce.price_btc + " - price_usd: " + ce.price_usd);
                         listKey.add(document.getId());
                     }
                     adapter.notifyDataSetChanged();
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                     listKey.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         CEntity ce = document.toObject(CEntity.class);
-                        listCEntity.add(ce.date + " - vol_24h: " + ce.volume_usd + " - price_btc: " + ce.price_btc + " - price_usd: " + ce.price_usd);
+                        listCEntity.add(ce.updated_date + " - vol_24h: " + ce.volume_usd + " - price_btc: " + ce.price_btc + " - price_usd: " + ce.price_usd);
                         listKey.add(document.getId());
                     }
                     adapter.notifyDataSetChanged();

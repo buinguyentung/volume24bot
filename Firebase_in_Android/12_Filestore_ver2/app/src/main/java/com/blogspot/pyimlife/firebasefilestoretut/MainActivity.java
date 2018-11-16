@@ -1,6 +1,7 @@
 package com.blogspot.pyimlife.firebasefilestoretut;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spnSelectCoin;
     ArrayAdapter<String>  spnAdapter;
     String selectedCoin = "bitcoin";
+    private final String SELECTED_COIN = "selected_coin";
 
     Button btnGetAll;
     TextView tvName;
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnFind = (Button) findViewById(R.id.btnFind);
         btnDelete = (Button) findViewById(R.id.btnDelete);
-        btnDelete.setEnabled(false);
+        //btnDelete.setEnabled(false);
 
         lvItem = (ListView) findViewById(R.id.lvItem);
         listCEntity = new ArrayList<String>();
@@ -97,30 +99,15 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 selectedPosition = i;
                 itemSelected = true;
-                btnDelete.setEnabled(true);
+                //btnDelete.setEnabled(true);
             }
         });
 
-        btnGetAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getAllData();
-            }
-        });
+        btnGetAll.setOnClickListener(new ServiceOnClickListener());
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                deleteData();
-            }
-        });
+        btnDelete.setOnClickListener(new ServiceOnClickListener());
 
-        btnFind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                findData();
-            }
-        });
+        btnFind.setOnClickListener(new ServiceOnClickListener());
 
         spnSelectCoin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -137,6 +124,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    class ServiceOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btnGetAll:
+                    getAllData();
+                    break;
+                case R.id.btnFind:
+                    findData();
+                    break;
+                case R.id.btnDelete:
+                    // Start DetailActivity class
+                    Intent intent = new Intent(ctx, DetailActivity.class);
+                    intent.putExtra(SELECTED_COIN, "ripple");
+                    ctx.startActivity(intent);
+                    //deleteData();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -171,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         if (itemSelected) {
             lvItem.setItemChecked(selectedPosition, false);
             itemSelected = false;
-            btnDelete.setEnabled(false);
+            //btnDelete.setEnabled(false);
         }
     }
 
@@ -185,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Delete document error");
                     }
                 });
-        btnDelete.setEnabled(false);
+        //btnDelete.setEnabled(false);
     }
 
     public void findData() {
@@ -228,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         if (itemSelected) {
             lvItem.setItemChecked(selectedPosition, false);
             itemSelected = false;
-            btnDelete.setEnabled(false);
+            //btnDelete.setEnabled(false);
         }
     }
 

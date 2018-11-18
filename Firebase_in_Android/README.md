@@ -6,7 +6,7 @@ Firebase in Android
 4. Delete item
 
 List of projects
-11_RealtimeDatabase: Realtime Database example
-12_Filestore_ver1: Cloud Filestore example
-12_Filestore_ver2: Cloud Filestore volume24bot demo #1
+1. 11_RealtimeDatabase: Realtime Database example
+2. 12_Filestore_ver1: Cloud Filestore example
+3. 12_Filestore_ver2: Cloud Filestore volume24bot demo #1
 ...

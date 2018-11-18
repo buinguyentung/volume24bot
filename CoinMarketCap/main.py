@@ -1,6 +1,6 @@
 import json
 import requests
-import os 
+import os,errno 
 import time
 from google.cloud import firestore
 
@@ -17,6 +17,23 @@ lt_time = {'06:00','14:00','23:30'}
 def urlCoin(name):
   return requests.get('https://api.coinmarketcap.com/v1/ticker/'+name)
 
+#backup data
+#create back up folder
+try:
+    os.makedirs("back_up")
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        raise
+
+import json
+def backup_data():
+  fwrite = open("back_up/CMC_" + unicode(datetime.datetime.now().date()), "w+")
+  json.dump(urlCoin("").json(), fwrite)
+
+def read_from_back_up(backup_date):
+  fread = open("back_up/CMC_"+ unicode(backup_date), "r+")
+  backup_data = json.load(fread)
+
 import datetime, schedule
 
 def sampling_data():
@@ -31,37 +48,34 @@ def sampling_data():
         client.collection(name).document(updated_date).set(data[0])
 
 import timedelta #timedelta(days=1)
-def sumary_data():
-    limit_date = datetime.datetiem.now().date() - timedelta(days=1)
-    for name in lt_coin:
-        docs = client.collection(name)
-        for i in docs:
-            if (docs["updated_date"] > limit_date)
-                client.collection(name).document(docs["updated_date"]).
-                set({"volume_usd":docs["volume_usd"]})
+#def sumary_data():
+#    limit_date = datetime.datetime.now().date() - timedelta(days=1)
+#    for name in lt_coin:
+#        docs = client.collection(name)
+#        for i in docs:
+#            if (docs["updated_date"] > limit_date)
+#                client.collection(name).document(docs["updated_date"]).
+#                set({"volume_usd":docs["volume_usd"]})
 
 def run():
+    backup_data()
     sampling_data()
-    sumary_data()
+#    sumary_data()
 
 def sampling_time():
     for t in lt_time:
         schedule.every().day.at(t).do(run)
 
-<<<<<<< HEAD
-schedule.every().day.at("6:00").do(sampling_data)
-schedule.every().day.at("14:00").do(sampling_data)
-schedule.every().day.at("23:30").do(sampling_data)
+schedule.every().day.at("6:00").do(run)
+schedule.every().day.at("14:00").do(run)
+schedule.every().day.at("23:30").do(run)
 #test
 #schedule.every().day.at("16:20").do(sampling_data)
-=======
->>>>>>> 8836f019341e9248115ba1457f20a02ca16eff69
 def main():
     sampling_time()
-    run()
-#    while True:
-#        schedule.run_pending()
-#	time.sleep(1)
+    while True:
+        schedule.run_pending()
+	time.sleep(1)
 
 if __name__ == "__main__":
   main()

@@ -4,7 +4,8 @@ import os,errno
 import time
 from google.cloud import firestore
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/hodinhtan/volume24bot/CoinMarketCap/keyfilecloud.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/tanho/create_service/py/volume24bot/CoinMarketCap/keyfilecloud2.json"
+#/home/tanho/create_service/py/volume24bot/CoinMarketCap
 #/home/tanho/keyfile.json
 # "/home/tanho/coinpy/volume24bot/cmarket/keyfilecloud.json
 #/home/tanho/github/py/volume24bot/cmarket
@@ -74,8 +75,9 @@ schedule.every().day.at("23:30").do(run)
 def main():
     sampling_time()
     while True:
-        schedule.run_pending()
-	time.sleep(1)
+        #schedule.run_pending()
+        run()
+	time.sleep(2)
 
 if __name__ == "__main__":
   main()
